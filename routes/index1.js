@@ -37,7 +37,7 @@ router.post('/searchWord', function (req, resContent, next) {
 
     console.log('--------------------------INSERT----------------------------')
     console.log('INSERT ID:', result)
-    console.log('-----------------------------------------------------------------\n\n')
+    console.log('--------------------------------------------------------\n\n')
   })
   var url = decodeURI(`https://www.btmye.cc/bt/${word}/time-1.html`)
   var opts = {
