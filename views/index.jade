@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  form(action="/searchWord", method="post")
+    input(type="text", value=keyWord, name="keywords", placeholder="Type in ...", required=true, focus=true)
+    button(type="submit",class="search") Search
+  div.result
+    - for (var key in btData)
+      section
+        a(href=decodeURIComponent(btData[key].filmManget),target='_blank')= decodeURIComponent(btData[key].filmName)
+        p= decodeURIComponent(btData[key].filmManget)
+
+
