@@ -20,11 +20,27 @@ connection.connect(function (err) {
   console.log('connected as id ' + connection.threadId)
 })
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'BTManget' })
+  var addSql = 'select * from keywords order by Id desc limit 30'
+  var addSqlParams = []
+  var final = []
+  connection.query(addSql, addSqlParams, function (err, result) {
+    if (err) {
+      console.log('[INSERT ERROR] - ', err.message)
+    }
+    // console.log(result)
+    var keyWords = []
+    result.forEach(function (element) {
+      keyWords.push(element.keyWords)
+    })
+    final = Array.from(new Set(keyWords))
+    // console.log(final)
+    res.render('index', { title: 'BTManget', history: final })
+  })
+  // console.log(final)
 })
 
 router.post('/searchWord', function (req, resContent, next) {
-  console.log(req.body.keywords)
+  // console.log(req.params.keywords)
   var word = encodeURI(encodeURI(req.body.keywords))
   var addSql = 'INSERT INTO keywords(Id,keyWords,time) VALUES(0,?,?)'
   var addSqlParams = [req.body.keywords, new Date()]
@@ -64,15 +80,24 @@ router.post('/searchWord', function (req, resContent, next) {
       getContent.find('.cili-item').each(function (item) {
         var filmManget = $(this).find('.download').attr('href')
         var filmName = $(this).find('.item-title h3 a').text()
+        var createTime = $(this).find('.item-bar>span').eq(1).find('b').text()
+        var fileSize = $(this).find('.item-bar>span').eq(2).find('b').text()
+        var hot = $(this).find('.item-bar>span').eq(3).find('b').text()
+        var nearlyDownload = $(this).find('.item-bar>span').eq(4).find('b').text()
+        // console.log(createTime)
         filmData.push({
           filmManget,
-          filmName
+          filmName,
+          createTime,
+          fileSize,
+          hot,
+          nearlyDownload
         })
       })
     } else {
       request.end()
     }
-
+    console.log(filmData)
     resContent.render('index', {btData: filmData})
   })
 })
