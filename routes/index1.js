@@ -3,8 +3,16 @@ var router = express.Router()
 var http = require('http')
 var cheerio = require('cheerio')
 var request = require('request')
-var querystring = require('querystring')
 var mysql = require('mysql')
+// local
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   port: '3306',
+//   database: 'keywords'
+// })
+// online
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -20,7 +28,7 @@ connection.connect(function (err) {
   console.log('connected as id ' + connection.threadId)
 })
 router.get('/', function (req, res, next) {
-  var addSql = 'select * from keywords order by Id desc limit 30'
+  var addSql = 'select * from keywords order by Id desc limit 100'
   var addSqlParams = []
   var final = []
   connection.query(addSql, addSqlParams, function (err, result) {
@@ -34,13 +42,13 @@ router.get('/', function (req, res, next) {
     })
     final = Array.from(new Set(keyWords))
     // console.log(final)
-    res.render('index', { title: 'BTManget', history: final })
+    res.render('index', { title: 'BTManget', history: final, searchHot: true })
   })
   // console.log(final)
 })
-
+// console.log(getQueryByNameFromUrl('keyword'))
 router.post('/searchWord', function (req, resContent, next) {
-  // console.log(req.params.keywords)
+  console.log(req.headers)
   var word = encodeURI(encodeURI(req.body.keywords))
   var addSql = 'INSERT INTO keywords(Id,keyWords,time) VALUES(0,?,?)'
   var addSqlParams = [req.body.keywords, new Date()]
@@ -98,7 +106,7 @@ router.post('/searchWord', function (req, resContent, next) {
       request.end()
     }
     console.log(filmData)
-    resContent.render('index', {btData: filmData})
+    resContent.render('index', {btData: filmData, searchHot: false})
   })
 })
 

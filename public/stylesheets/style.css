@@ -26,10 +26,7 @@ body {
 }
 
 form {
-  margin: 100px auto 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  margin:20px auto 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -43,7 +40,7 @@ form input[type="text"] {
       -ms-flex: 1;
           flex: 1;
   padding: 12px;
-  width: 100%;
+  width: 500px;
   font-size: 16px;
   outline: none;
   border: 1px solid #706778;
@@ -55,6 +52,7 @@ form input[type="text"]:focus {
   background-color: #fefbf3;
 }
 form .search {
+  width: 100px;
   padding: 12px 24px;
   font-size: 16px;
   text-align: center;
@@ -86,11 +84,56 @@ section{
   margin-right: 10px;
 }
 .keywords{
-  margin: 0 auto;
-  max-width: 600px;
-
+  margin: 20px auto;
+  width: 600px;
+  word-break: break-all;
+}
+.hot-title{
+  font-size: 14px;
+  color: rgb(199, 109, 109);
+  margin-right: 10px;
 }
 .history{
+  display: inline-block;
   margin-right: 10px;
+  margin-bottom: 10px;
+}
+.download{
+  color: rgb(199, 109, 109);
+}
+footer{
+  text-align: center;
+  font-size: 12px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}
+footer a{
+  display: block;
+  color: #706778;
+  text-align: center;
+}
+.deer{
+  display: block;
+  margin: 30px auto 0;
+}
+
+@media screen and (max-width: 700px) {
+  form {
+    width: 320px;
+    margin: 100px auto 20px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+  }
+  form input[type="text"]{
+    width: 210px;
+  }
+  .keywords{
+    margin: 20px auto;
+    width: 300px;
+  }
 }
 

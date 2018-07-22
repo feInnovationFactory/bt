@@ -1,12 +1,19 @@
 extends layout
 
 block content
-  form(action="/searchWord", method="post")
-    input(type="text", value=keyWord, name="keywords", placeholder="Type in ...", required=true, focus=true)
+  a(href='/')
+    img(src='http://lc-a5zjlnxg.cn-n1.lcfile.com/803f0bcbed373caae623.png',width='200',height='200',class='deer')
+  form(action="/searchWord", method="post", id="form")
+    input(type="text", value=keyWord, name="keywords", placeholder="Type in ...", required=true, focus=true, id='search')
     button(type="submit",class="search") Search
     div.keywords
+      - if ( searchHot ) {
+        span.hot-title 热门搜索：
+      - }else{
+        span.hot-title 
+      - }
       - for (var key in history)
-        a.history(href=`/searchWord/${history[key]}`)= decodeURIComponent(history[key])
+        a.history(href="javascript:;", onclick=`exchange(event)`)= decodeURIComponent(history[key])
   div.result
     - for (var key in btData)
       section
@@ -18,10 +25,19 @@ block content
           b 文件大小：
           span.tag=decodeURIComponent(btData[key].fileSize)
 
-          b 下载热度：
-          span.tag=decodeURIComponent(btData[key].hot)
+          b.download 下载热度：
+          span.tag.download=decodeURIComponent(btData[key].hot)
 
           b 最近下载：
           span.tag=decodeURIComponent(btData[key].nearlyDownload)
+  script(type='text/javascript').
+    var form = document.getElementById('form');
+    function exchange(e){
+      var keyword = e.target.innerHTML
+      document.getElementById('search').value = keyword
+      form.submit();
+    }
+
+
 
 
