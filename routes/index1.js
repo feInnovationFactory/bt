@@ -35,7 +35,6 @@ router.get('/', function (req, res, next) {
     if (err) {
       console.log('[INSERT ERROR] - ', err.message)
     }
-    // console.log(result)
     var keyWords = []
     result.forEach(function (element) {
       keyWords.push(element.keyWords)
@@ -63,7 +62,7 @@ router.post('/searchWord', function (req, resContent, next) {
     console.log('INSERT ID:', result)
     console.log('--------------------------------------------------------\n\n')
   })
-  var url = decodeURI(`https://www.btmye.cc/bt/${word}/time-1.html`)
+  var url = decodeURI(`https://btmye.cc/bt/${word}/time-1.html`)
   var opts = {
     url: url,
     header: {
@@ -78,6 +77,7 @@ router.post('/searchWord', function (req, resContent, next) {
   }
 
   request(opts, function (error, response, body) {
+    // console.log(response)
     if (!error && response.statusCode === 200) {
       var $ = cheerio.load(body)
       console.log($)
