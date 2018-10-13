@@ -1,6 +1,5 @@
 var express = require('express')
 var router = express.Router()
-var http = require('http')
 var cheerio = require('cheerio')
 var request = require('request')
 var mysql = require('mysql')
