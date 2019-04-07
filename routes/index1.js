@@ -61,15 +61,15 @@ router.post('/searchWord', function (req, resContent, next) {
     console.log('INSERT ID:', result)
     console.log('--------------------------------------------------------\n\n')
   })
-  var url = decodeURI(`https://btmye.cc/bt/${word}/time-1.html`)
+  var url = decodeURI(`https://btzzi.info/bt/${word}.html`)
   var opts = {
     url: url,
     header: {
-      'Cookie': '__cfduid=d990391621493683ae28ee99c357cade61521958326; Hm_lvt_792abf9e9a255d4ffd2514437a5c942e=1521958327,1521958353; Hm_lpvt_792abf9e9a255d4ffd2514437a5c942e=152195848',
+      'Cookie': '__cfduid=d27f7fb1f0194049b1bf86541a5dd6b411554638981; Hm_lvt_39f341a95eb24ef1da6c210c6c27563d=1554638983; Hm_lpvt_39f341a95eb24ef1da6c210c6c27563d=1554638987',
       'Connection': 'keep-alive',
       'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
-      'Referer': 'https://www.btmye.cc',
-      'Host': 'btmye.cc',
+      'Referer': 'https://btzzi.info',
+      'Host': 'btzzi.info',
       'Upgrade-Insecure-Requests': 1
 
     }
